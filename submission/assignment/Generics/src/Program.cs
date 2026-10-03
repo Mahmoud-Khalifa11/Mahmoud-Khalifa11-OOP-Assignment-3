@@ -31,3 +31,5 @@ foreach (var s in students.GetAll().Page(2, 2))
 var courseList = new List<Course>(courses.GetAll());
 Console.WriteLine(courseList.FindById(12)?.Title);
 
+// must NOT compile: string مش بيطبّق IHasId
+var bad = new Store<string>();
