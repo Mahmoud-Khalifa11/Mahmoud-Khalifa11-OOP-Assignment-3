@@ -32,4 +32,4 @@ var courseList = new List<Course>(courses.GetAll());
 Console.WriteLine(courseList.FindById(12)?.Title);
 
 // must NOT compile: string مش بيطبّق IHasId
-var bad = new Store<string>();
+//var bad = new Store<string>();
