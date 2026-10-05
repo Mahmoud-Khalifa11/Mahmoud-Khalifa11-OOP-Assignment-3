@@ -14,8 +14,12 @@ var processor = new OrderProcessor(new SqlOrderRepository(), new SmtpEmailSender
 processor.Process(1001, "customer@example.com");
 Console.WriteLine();
 
-new UrgentScheduledEmailNotification { SendAt = DateTime.Today.AddHours(18) }
+new Notification(new EmailChannel(), urgent: true, sendAt: DateTime.Today.AddHours(18))
     .Send("customer@example.com", "Your order ships tomorrow");
-new UrgentSmsNotification()
+new Notification(new SmsChannel(), urgent: true)
     .Send("+201000000000", "OTP 4821");
+
+new Notification(new PushChannel()).Send("device-42", "Hello");
+new Notification(new PushChannel(), urgent: true, sendAt: DateTime.Today.AddHours(9))
+    .Send("device-42", "Flash sale");
 
